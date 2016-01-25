@@ -23,6 +23,7 @@ public class PayStationImpl implements PayStation {
     
     private int insertedSoFar;
     private int timeBought;
+    private int totalCollected;
 
     @Override
     public void addPayment(int coinValue)
@@ -46,13 +47,30 @@ public class PayStationImpl implements PayStation {
     @Override
     public Receipt buy() {
         Receipt r = new ReceiptImpl(timeBought);
+        totalCollected += insertedSoFar;
         reset();
         return r;
     }
+    
+    /**
+     * Cancel the present transaction. Resets the paystation for a new
+     * transaction. Return a Map defining the coins returned to the user.
+     * The key is the coin type and the associated value is the number of
+     * these coins that are returned. The Map object is never null even if
+     * no coins are returned.  The map will only contain keys for coins to 
+     * be returned.  The Map will only contain keys for coins to be returned
+     * The Map will be cleared after a cancel or a buy
+     */
 
     @Override
     public void cancel() {
         reset();
+    }
+    
+    public int empty(){
+        int r = totalCollected;
+        totalCollected = 0; 
+        return r;
     }
     
     private void reset() {
