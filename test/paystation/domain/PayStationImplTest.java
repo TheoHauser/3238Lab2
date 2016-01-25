@@ -170,5 +170,17 @@ public class PayStationImplTest {
         assertEquals("Should equal 0", i, 0);
     }
     
-    
+    @Test
+    public void shouldResetTotalAfterEmpty()
+            throws IllegalCoinException{
+        int i;
+        
+        ps.addPayment(10);
+        
+        ps.empty();
+        i = ps.empty();
+        
+        assertEquals("Should eqaul 0 after empty", i, 0);
+    }
+
 }
