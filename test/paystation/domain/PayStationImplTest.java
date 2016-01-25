@@ -17,7 +17,7 @@ import org.junit.Before;
 
 public class PayStationImplTest {
 
-    PayStation ps;
+    PayStationImpl ps;
 
     @Before
     public void setup() {
@@ -137,5 +137,25 @@ public class PayStationImplTest {
         ps.addPayment(25);
         assertEquals("Insert after cancel should work",
                 10, ps.readDisplay());
+    }
+    
+    /**
+     * Verify that a call to empty returns the total amount entered
+     */
+    @Test
+    public void shouldReturnTotalAmountEntered()
+            throws IllegalCoinException{
+        int i = ps.empty();
+        ps.addPayment(25);
+        ps.buy();
+        
+        ps.addPayment(5);
+        ps.buy();
+        
+        ps.addPayment(10);
+        ps.cancel();
+        i = ps.empty();
+        
+        assertEquals("Should be total bought(30)", 30, i);
     }
 }
