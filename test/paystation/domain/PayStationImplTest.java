@@ -152,10 +152,23 @@ public class PayStationImplTest {
         ps.addPayment(5);
         ps.buy();
         
-        ps.addPayment(10);
-        ps.cancel();
         i = ps.empty();
         
         assertEquals("Should be total bought(30)", 30, i);
     }
+    
+    @Test
+    public void shouldNotAddCanceledEntry()
+            throws IllegalCoinException{
+        int i = ps.empty();
+        
+        ps.addPayment(10);
+        ps.cancel();
+        
+        i = ps.empty();
+        
+        assertEquals("Should equal 0", i, 0);
+    }
+    
+    
 }
