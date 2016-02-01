@@ -11,6 +11,7 @@
  */
 package paystation.domain;
 
+import java.util.HashMap;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -182,5 +183,63 @@ public class PayStationImplTest {
         
         assertEquals("Should eqaul 0 after empty", i, 0);
     }
+    
+    @Test
+    public void shouldReturnMapOneCoin()
+            throws IllegalCoinException{
+        HashMap m;
+        Integer five = 5;
+        Integer one = 1;
+        
+        ps.addPayment(5);
+        
+        m = ps.cancel();
+        
+        Integer n = (Integer)m.get(five);
+        
+        assertEquals("Should equal 1", n, one);
+    }
+    
+    @Test
+    public void shouldReturnMapMix()
+            throws IllegalCoinException{
+        HashMap m;
+        Integer five = 5;
+        Integer ten = 10;
+        Integer tf = 25;
+        
+        Integer one = 1;
+        Integer two = 2;
+        Integer three = 3;
+        Integer x,y,z;
+        
+        ps.addPayment(5);
+        
+        ps.addPayment(10);
+        ps.addPayment(10);
+        
+        ps.addPayment(25);
+        ps.addPayment(25);
+        ps.addPayment(25);
+        
+        m = ps.cancel();
+        
+        x = (Integer)m.get(five);
+        assertEquals("should equal 1", x, one);
+        
+        x = (Integer)m.get(ten);
+        assertEquals("should equal 2", x, two);
+        
+        x = (Integer)m.get(tf);
+        assertEquals("should equal 3", x, three);
+    }
+    
+//    @Test 
+//    public void shouldReturnMapEmpty()
+//            throws IllegalCoinException{
+//        HashMap m;
+//        
+//        
+//    }
 
 }
