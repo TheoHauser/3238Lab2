@@ -39,10 +39,13 @@ public class PayStationImpl implements PayStation {
             default:
                 throw new IllegalCoinException("Invalid coin: " + coinValue);
         }
-        Integer n = (Integer) map.get((Integer)coinValue);
-        n = n+1;
         Integer c = coinValue;
-        map.replace(c, n);
+        Integer n = 1;
+        if(map.containsKey(c)){
+            n = (Integer)map.get(c);
+            n++;
+        }
+        map.put(c, n);
         insertedSoFar += coinValue;
         timeBought = insertedSoFar / 5 * 2;
     }
@@ -72,8 +75,10 @@ public class PayStationImpl implements PayStation {
 
     @Override
     public HashMap<Integer, Integer> cancel() {
+        HashMap m = (HashMap)map.clone();
+        m.putAll(map);
         reset();
-        return map;
+        return m;
     }
     
     public int empty(){
