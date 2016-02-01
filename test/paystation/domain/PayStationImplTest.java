@@ -234,12 +234,33 @@ public class PayStationImplTest {
         assertEquals("should equal 3", x, three);
     }
     
-//    @Test 
-//    public void shouldReturnMapEmpty()
-//            throws IllegalCoinException{
-//        HashMap m;
-//        
-//        
-//    }
+    @Test 
+    public void shouldReturnMapEmpty()
+            throws IllegalCoinException{
+        HashMap m;
+        m = ps.cancel();
+        
+        assertEquals("Should be true", m.isEmpty(), true);
+    }
+    
+    public void shouldReturnClearMap()
+            throws IllegalCoinException{
+        HashMap m;
+        
+        ps.addPayment(5);
+        ps.cancel();
+        
+        m = ps.cancel();
+        
+        assertEquals("Should be true", m.isEmpty(), true);
+    }
+    
+    public void shouldReturnClearMapBuy()
+            throws IllegalCoinException{
+        ps.addPayment(5);
+        ps.buy();
+        
+        assertEquals("Should be true", m.isEmpty(), true);
+    }
 
 }
