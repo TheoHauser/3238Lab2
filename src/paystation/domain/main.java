@@ -61,7 +61,19 @@ public class main{
                             + f + "\nNumber of dimes: " + t + "\nNumber of Quarters: " +  tf);
                     break;
                 case 5:
-                    
+                    System.out.println("Enter 1 for AlphaTown, 2 for BetaTown, or 3 for GammaTown:");
+                    int rs = scan.nextInt();
+                    scan.nextLine();
+                    if(rs == 1){
+                        
+                    }
+                    else if(rs == 2){
+                        
+                    }
+                    else if(rs == 3){
+                        
+                    }
+                    break;
             }
            
         }

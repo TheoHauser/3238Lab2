@@ -48,6 +48,8 @@ public class PayStationImpl implements PayStation {
         }
         map.put(c, n);
         insertedSoFar += coinValue;
+        
+        
         timeBought = insertedSoFar / 5 * 2;
     }
 

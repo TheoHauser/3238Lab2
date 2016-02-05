@@ -268,5 +268,23 @@ public class PayStationImplTest {
         
         assertEquals("Should be true", m.isEmpty(), true);
     }
+    
+    @Test
+    public void shouldDisplay2MinFor5CentsProgressive()
+            throws IllegalCoinException {
+        ps.addPayment(5);
+        assertEquals("Should display 2 min for 5 cents",
+                2, ps.readDisplay());
+    }
+
+    /**
+     * Entering 25 cents should make the display report 10 minutes parking time.
+     */
+    @Test
+    public void shouldDisplay10MinFor25CentsProgressive() throws IllegalCoinException {
+        ps.addPayment(25);
+        assertEquals("Should display 10 min for 25 cents",
+                10, ps.readDisplay());
+    }
 
 }
