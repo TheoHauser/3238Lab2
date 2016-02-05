@@ -2,6 +2,7 @@ package paystation.domain;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 /**
  * Implementation of the pay station.
@@ -28,7 +29,7 @@ public class PayStationImpl implements PayStation {
     private int timeBought;
     private int totalCollected;
     private HashMap map = new HashMap();
-
+    
     @Override
     public void addPayment(int coinValue)
             throws IllegalCoinException {

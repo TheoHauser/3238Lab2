@@ -211,7 +211,7 @@ public class PayStationImplTest {
         Integer one = 1;
         Integer two = 2;
         Integer three = 3;
-        Integer x,y,z;
+        Integer x;
         
         ps.addPayment(5);
         
@@ -243,6 +243,7 @@ public class PayStationImplTest {
         assertEquals("Should be true", m.isEmpty(), true);
     }
     
+    @Test
     public void shouldReturnClearMap()
             throws IllegalCoinException{
         HashMap m;
@@ -255,10 +256,15 @@ public class PayStationImplTest {
         assertEquals("Should be true", m.isEmpty(), true);
     }
     
+    @Test
     public void shouldReturnClearMapBuy()
             throws IllegalCoinException{
+        HashMap m;
+        
         ps.addPayment(5);
         ps.buy();
+        
+        m = ps.cancel();
         
         assertEquals("Should be true", m.isEmpty(), true);
     }
