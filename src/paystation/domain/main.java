@@ -65,13 +65,19 @@ public class main{
                     int rs = scan.nextInt();
                     scan.nextLine();
                     if(rs == 1){
-                        
+                        ps.setRateStrategy(1);
                     }
                     else if(rs == 2){
-                        
+                        ps.setRateStrategy(2);
                     }
                     else if(rs == 3){
-                        
+                        System.out.println("Enter day of the week: \n1 = Monday\n2 = Tuesday\n...\n7 = Sunday");
+                        int day = scan.nextInt();
+                        scan.nextLine();
+                        if(day<6)
+                            ps.setRateStrategy(1);
+                        else
+                            ps.setRateStrategy(2);
                     }
                     break;
             }

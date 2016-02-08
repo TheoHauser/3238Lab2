@@ -29,6 +29,7 @@ public class PayStationImpl implements PayStation {
     private int timeBought;
     private int totalCollected;
     private HashMap map = new HashMap();
+    private RateStrategy rs = new LinearRateStrategy();
     
     @Override
     public void addPayment(int coinValue)
@@ -50,7 +51,7 @@ public class PayStationImpl implements PayStation {
         insertedSoFar += coinValue;
         
         
-        timeBought = insertedSoFar / 5 * 2;
+        timeBought = rs.calculate(insertedSoFar);
     }
 
     @Override
@@ -93,5 +94,12 @@ public class PayStationImpl implements PayStation {
     private void reset() {
         timeBought = insertedSoFar = 0;
         map.clear();
+    }
+    
+    public void setRateStrategy(int r){
+        if(r == 1)
+            rs = new LinearRateStrategy();
+        if(r == 2)
+            rs = new ProgressiveRateStrategy();
     }
 }
